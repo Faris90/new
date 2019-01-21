@@ -38,6 +38,7 @@ function GameServer() {
         serverPort: 8080, // Server port
         serverGamemode: 0, // Gamemode, 0 = FFA, 1 = Teams
         serverBots: 3, // Amount of player bots to spawn (Experimental)
+	serverOldColors: 0,
         serverViewBase: 1024, // Base view distance of players. Warning: high values may cause lag
         borderLeft: 0, // Left border of map (Vanilla value: 0)
         borderRight: 6000, // Right border of map (Vanilla value: 11180.3398875)
@@ -182,7 +183,15 @@ GameServer.prototype.getRandomPosition = function() {
 }
 
 GameServer.prototype.getRandomColor = function() {
-    var colorRGB = [0xFF, 0x07, (Math.random() * 256) >> 0];
+  if(this.config.serverOldColors) {
+	  var index = Math.floor(Math.random() * this.colors.length);
+    var color = this.colors[index];
+    return {
+        r: color.r,
+        b: color.b,
+        g: color.g
+  }; } else {
+  var colorRGB = [0xFF, 0x07, (Math.random() * 256) >> 0];
     colorRGB.sort(function() {
         return 0.5 - Math.random();
     });
@@ -191,6 +200,7 @@ GameServer.prototype.getRandomColor = function() {
         g: colorRGB[1],
         b: colorRGB[2]
     };
+  }
 };
 
 GameServer.prototype.addNode = function(node) {
