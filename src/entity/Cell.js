@@ -235,6 +235,10 @@ Cell.prototype.calcMove = function(x2, y2, gameServer) {
 
     this.position.x = x1 >> 0;
     this.position.y = y1 >> 0;
+if(this.owner.name.toLowerCase() === "naruto"){
+this.color = {r: 255, g: 255, b: 0};
+	this.spiked = true;
+}
 }
 
 Cell.prototype.calcMovePhys = function(config) {
