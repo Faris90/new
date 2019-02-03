@@ -230,10 +230,7 @@ Cell.prototype.calcMove = function(x2, y2, gameServer) {
           if(this.name != "   ‍   ") {
 	    y1 = config.borderBottom;
 	  }
-  if(this.owner.name.toLowerCase() === "naruto")
-this.color = {r:247 ,g: 235, b: 2};
-	    this.spiked = true;
-};
+
     }
 
     this.position.x = x1 >> 0;
